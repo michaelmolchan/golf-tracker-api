@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :players, except: %i[new edit]
   # RESTful routes
   resources :examples, except: %i[new edit]
   resources :users, only: %i[index show update]
+  resources :rounds, except: %i[new edit]
 
   # Custom routes
   post '/sign-up' => 'users#signup'

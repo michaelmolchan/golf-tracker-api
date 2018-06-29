@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe PlayersController, type: :controller do
+RSpec.describe RoundsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Player. As you add validations to Player, be sure to
+  # Round. As you add validations to Round, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe PlayersController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # PlayersController. Be sure to keep this updated too.
+  # RoundsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      player = Player.create! valid_attributes
+      round = Round.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -51,33 +51,33 @@ RSpec.describe PlayersController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      player = Player.create! valid_attributes
-      get :show, params: {id: player.to_param}, session: valid_session
+      round = Round.create! valid_attributes
+      get :show, params: {id: round.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Player" do
+      it "creates a new Round" do
         expect {
-          post :create, params: {player: valid_attributes}, session: valid_session
-        }.to change(Player, :count).by(1)
+          post :create, params: {round: valid_attributes}, session: valid_session
+        }.to change(Round, :count).by(1)
       end
 
-      it "renders a JSON response with the new player" do
+      it "renders a JSON response with the new round" do
 
-        post :create, params: {player: valid_attributes}, session: valid_session
+        post :create, params: {round: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(player_url(Player.last))
+        expect(response.location).to eq(round_url(Round.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new player" do
+      it "renders a JSON response with errors for the new round" do
 
-        post :create, params: {player: invalid_attributes}, session: valid_session
+        post :create, params: {round: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,27 +90,27 @@ RSpec.describe PlayersController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested player" do
-        player = Player.create! valid_attributes
-        put :update, params: {id: player.to_param, player: new_attributes}, session: valid_session
-        player.reload
+      it "updates the requested round" do
+        round = Round.create! valid_attributes
+        put :update, params: {id: round.to_param, round: new_attributes}, session: valid_session
+        round.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the player" do
-        player = Player.create! valid_attributes
+      it "renders a JSON response with the round" do
+        round = Round.create! valid_attributes
 
-        put :update, params: {id: player.to_param, player: valid_attributes}, session: valid_session
+        put :update, params: {id: round.to_param, round: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the player" do
-        player = Player.create! valid_attributes
+      it "renders a JSON response with errors for the round" do
+        round = Round.create! valid_attributes
 
-        put :update, params: {id: player.to_param, player: invalid_attributes}, session: valid_session
+        put :update, params: {id: round.to_param, round: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -118,11 +118,11 @@ RSpec.describe PlayersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested player" do
-      player = Player.create! valid_attributes
+    it "destroys the requested round" do
+      round = Round.create! valid_attributes
       expect {
-        delete :destroy, params: {id: player.to_param}, session: valid_session
-      }.to change(Player, :count).by(-1)
+        delete :destroy, params: {id: round.to_param}, session: valid_session
+      }.to change(Round, :count).by(-1)
     end
   end
 
